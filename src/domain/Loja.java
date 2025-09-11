@@ -1,4 +1,5 @@
 package domain;
+import validation.ValidarNome;
 
 public class Loja {
         private String nome;
@@ -7,6 +8,7 @@ public class Loja {
 
         // Construtor completo
         public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario) {
+            ValidarNome.validar(nome);
             this.nome = nome;
             this.quantidadeFuncionarios = quantidadeFuncionarios;
             this.salarioBaseFuncionario = salarioBaseFuncionario;
@@ -22,23 +24,21 @@ public class Loja {
         public String getNome() {
             return nome;
         }
-
         public int getQuantidadeFuncionarios() {
             return quantidadeFuncionarios;
         }
-
         public double getConsultarSalarioBase() {
             return salarioBaseFuncionario;
         }
-
         // Setters
-        // Ajusta o nome da loja e garante que o nome não seja nulo, vazio ou contenha caracteres inválidos.
-        public void setMudarNome(String nome) {
+
+        // ****** Método substituído pela classe ValidarNome no pacote src.validation para evitar duplicidade com a classe Produto ******
+        /* public void setMudarNome(String nome) {
             if (nome == null || nome.trim().isEmpty() || !nome.matches("[\\p{L}0-9 ]+")) {
                 throw new IllegalArgumentException("Digite um nome válido (apenas letras e/ou números).");
             }
             this.nome = nome;
-        }   
+        }   */
 
         // Ajusta a quantidade de funcionários e garante que não seja atribuído valor negativo pelo usuário, mantendo a regra do valor negativo somente como valor padrão da classe construtora.
         public void setQuantidadeFuncionarios(int quantidadeFuncionarios) {
@@ -78,9 +78,9 @@ public class Loja {
     @Override
     public String toString() {
         return "Loja{" +
-                "nome = '" + nome + '\'' +
-                ", quantidadeFuncionarios = " + quantidadeFuncionarios +
-                ", salarioBaseFuncionario = " + salarioBaseFuncionario +
+                "nome da loja = '" + nome + '\'' +
+                ", quantidade de funcionários = " + quantidadeFuncionarios +
+                ", salário base do funcionário = " + salarioBaseFuncionario +
                 '}';
     }
 }
