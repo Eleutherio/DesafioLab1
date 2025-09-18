@@ -1,5 +1,5 @@
 package domain;
-import validation.ValidarNome;
+//import validation.validarNome;
 
 public class Loja {
         private String nome;
@@ -8,7 +8,7 @@ public class Loja {
 
         // Construtor completo
         public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario) {
-            ValidarNome.validar(nome);
+            //validarNome.validar(nome);
             this.nome = nome;
             this.quantidadeFuncionarios = quantidadeFuncionarios;
             this.salarioBaseFuncionario = salarioBaseFuncionario;
@@ -27,18 +27,18 @@ public class Loja {
         public int getQuantidadeFuncionarios() {
             return quantidadeFuncionarios;
         }
-        public double getConsultarSalarioBase() {
+        public double getSalarioBaseFuncionario() {
             return salarioBaseFuncionario;
         }
         // Setters
 
-        // ****** Método substituído pela classe ValidarNome no pacote src.validation para evitar duplicidade com a classe Produto ******
-        /* public void setMudarNome(String nome) {
+        // ****** Método - pode ser - substituído pela classe ValidarNome no pacote src.validation para evitar duplicidade com a classe Produto ******
+         public void setNome(String nome) {
             if (nome == null || nome.trim().isEmpty() || !nome.matches("[\\p{L}0-9 ]+")) {
                 throw new IllegalArgumentException("Digite um nome válido (apenas letras e/ou números).");
             }
             this.nome = nome;
-        }   */
+        }
 
         // Ajusta a quantidade de funcionários e garante que não seja atribuído valor negativo pelo usuário, mantendo a regra do valor negativo somente como valor padrão da classe construtora.
         public void setQuantidadeFuncionarios(int quantidadeFuncionarios) {
@@ -48,29 +48,34 @@ public class Loja {
             this.quantidadeFuncionarios = quantidadeFuncionarios;
         }
         // Ajusta o salário base dos funcionários e garante que não seja atribuído valor um negativo pelo usuário, mantendo a regra do valor negativo somente como valor padrão da classe construtora.
-        public void setAjustarSalarioBase(double salarioBaseFuncionario) {
+        public void setSalarioBaseFuncionario(double salarioBaseFuncionario) {
             if (salarioBaseFuncionario < 0) {
                 throw new IllegalArgumentException("O salário base não pode ser negativo.");
             }
             this.salarioBaseFuncionario = salarioBaseFuncionario;
         }
-
+        
         // Método para calcular e exibir os gastos totais com salários dos funcionários. Se o salário base não foi definido (valor negativo), informa que não é possível calcular.
-        public void gastosComSalarios() {
+        public double gastosComSalario() {
             if (salarioBaseFuncionario <= 0) {
                 System.out.println("Salário base não definido. Não é possível calcular os gastos com salários.");
+                return 0;
             } else {
                 double totalGastos = quantidadeFuncionarios * salarioBaseFuncionario;
                 System.out.printf("Gastos totais com salários: R$ %.2f%n", totalGastos);
+                return totalGastos;
             }
         }
-        public void tamanhoDaLoja() {
+        public char tamanhoDaLoja() {
             if (quantidadeFuncionarios < 10) {
                 System.out.println("P");
+                return 'P'; 
             } else if (quantidadeFuncionarios <= 30) {
                 System.out.println("M");
+                return 'M';
             } else {
                 System.out.println("G");
+                return 'G';
             }
         }   
 

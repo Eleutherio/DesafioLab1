@@ -54,14 +54,14 @@ public class Data {
             throw new IllegalArgumentException("Ano inválido. Deve ser um valor positivo.");
         }
         // Ajusta o dia se fevereiro for afetado por mudança de ano bissexto
-        if (this.mes == 2 && this.dia == 29 && !isAnoBissexto(ano)) {
+        if (this.mes == 2 && this.dia == 29 && !verificaAnoBissexto(ano)) {
             this.dia = 28;
         }
         this.ano = ano;
     }
 
     // Método para verificar se um ano é bissexto
-    private boolean isAnoBissexto(int ano) {
+    public boolean verificaAnoBissexto(int ano) {
         return (ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0);
     }
 
@@ -73,7 +73,7 @@ public class Data {
             case 4: case 6: case 9: case 11:
                 return 30;
             case 2:
-                return isAnoBissexto(ano) ? 29 : 28;
+                return verificaAnoBissexto(ano) ? 29 : 28;
             default:
                 throw new IllegalArgumentException("Mês inválido.");
         }

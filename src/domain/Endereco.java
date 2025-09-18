@@ -1,5 +1,5 @@
 package domain;
-import validation.ValidarNome;
+// import validation.validarNome;
 
 
 public class Endereco {
@@ -47,11 +47,11 @@ public class Endereco {
 
     //Setters
     public void setNomeDaRua(String nomeDaRua) {
-        ValidarNome.validar(nomeDaRua);
+    //    validarNome.validar(nomeDaRua);
         this.nomeDaRua = nomeDaRua;
     } 
     public void setCidade(String cidade) {
-        ValidarNome.validar(cidade);
+    //    validarNome.validar(cidade);
         this.cidade = cidade;
     }
     public void setEstado(String estado) {
@@ -79,7 +79,7 @@ public class Endereco {
         this.numero = numero;
     }
     public void setComplemento(String complemento) {
-        ValidarNome.validar(complemento);
+    //    validarNome.validar(complemento);
         this.complemento = complemento;
     }
 

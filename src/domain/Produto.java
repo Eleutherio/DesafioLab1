@@ -1,5 +1,5 @@
 package domain;
-import validation.ValidarNome;
+// import validation.validarNome;
 
 public class Produto {
     private String nome;
@@ -8,7 +8,7 @@ public class Produto {
     // Construtor completo da classe Produto
     // Adiciona validação de nome usando a classe ValidarNome do pacote src.validation
     public Produto(String nome, double preco) {
-        ValidarNome.validar(nome);
+    //  validarNome.validar(nome);
         this.nome = nome;
         this.preco = preco;
     }
@@ -17,13 +17,13 @@ public class Produto {
     public String getNome() {
         return nome;
     }
-    public double getConsultarPreco() {
+    public double getPreco() {
         return preco;
     }
 
     // Setters com validação de nome usando a classe ValidarNome do pacote src.validation
-    public void setMudarNome(String nome) {
-        ValidarNome.validar(nome);
+    public void setNome(String nome) {
+       // validarNome.validar(nome);
         this.nome = nome;
     }
     public void setPreco(double preco) {
