@@ -33,12 +33,14 @@ public class Data {
     }
 
     // Setters com validação
+    // Ajusta o dia e verifica se é válido para o mês e ano atuais
     public void setDia(int dia) {
         if (dia < 1 || dia > diasNoMes(this.mes, this.ano)) {
             throw new IllegalArgumentException("Dia inválido para o mês e ano atuais.");
         }
         this.dia = dia;
     }
+    // Ajusta o mês e verifica se o dia é válido para o novo mês
     public void setMes(int mes) {
         if (mes < 1 || mes > 12) {
             throw new IllegalArgumentException("Mês inválido. Deve estar entre 1 e 12.");
@@ -49,20 +51,21 @@ public class Data {
         }
         this.mes = mes;
     }
+    // Ajusta o ano e verifica se o dia é válido em caso de fevereiro em anos bissextos
     public void setAno(int ano) {
         if (ano < 0) {
             throw new IllegalArgumentException("Ano inválido. Deve ser um valor positivo.");
         }
         // Ajusta o dia se fevereiro for afetado por mudança de ano bissexto
-        if (this.mes == 2 && this.dia == 29 && !verificaAnoBissexto(ano)) {
+        if (this.mes == 2 && this.dia == 29 && !verificaAnoBissexto()) {
             this.dia = 28;
         }
         this.ano = ano;
     }
 
     // Método para verificar se um ano é bissexto
-    public boolean verificaAnoBissexto(int ano) {
-        return (ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0);
+    public boolean verificaAnoBissexto() {
+        return ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0;
     }
 
     // Método para obter o número de dias em um mês
@@ -73,11 +76,17 @@ public class Data {
             case 4: case 6: case 9: case 11:
                 return 30;
             case 2:
-                return verificaAnoBissexto(ano) ? 29 : 28;
+                return verificaAnoBissexto() ? 29 : 28;
             default:
                 throw new IllegalArgumentException("Mês inválido.");
         }
     }
+    // Método para verificar se a data é anterior a uma data de referência
+    public boolean estaVencido(Data referencia) {
+    return referencia.getAno() > this.ano ||
+           (referencia.getAno() == this.ano && referencia.getMes() > this.mes) ||
+           (referencia.getAno() == this.ano && referencia.getMes() == this.mes && referencia.getDia() > this.dia);
+}
 
     // Representação em String do objeto Data
     @Override

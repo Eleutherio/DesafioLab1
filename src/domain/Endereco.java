@@ -20,7 +20,7 @@ public class Endereco {
         this.pais = pais;
         this.cep = cep;
         this.numero = numero;
-        this.complemento = complemento;  
+        this.complemento = complemento;
     }
     // Getters
     public String getNomeDaRua() {

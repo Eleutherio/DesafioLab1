@@ -1,3 +1,9 @@
+import domain.Data;
+import domain.Endereco;
+import domain.Loja;
+import domain.Produto;
+
+
 public class ValidadorEtapa2 {
 
 	public static void main(String[] args){
